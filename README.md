@@ -1,7 +1,3 @@
-# music-store-management
-A complete database project for managing a music store — including customer orders, inventory tracking, and sales analytics using SQL and relational database principles.
-# 🎵 Music Store Management System
-
 # 🎵 Music Store Management System
 
 This is a DBMS project where we have built a complete music store system using SQL.
@@ -20,17 +16,24 @@ This is a DBMS project where we have built a complete music store system using S
 
 ## 📂 Files Included
 
--  → Table creation and sample data  
+- [`Music_Store_database.sql`](https://github.com/Jawebdata/music-store-management/blob/66f26e18b1fe7d8fb9a3d3cfc2ff8f7515e49fe3/Music_Store_database.sql) → Database structure and sample data  
+- [`music_store_anaylsis.sql`](https://github.com/Jawebdata/music-store-management/blob/66f26e18b1fe7d8fb9a3d3cfc2ff8f7515e49fe3/music_store_anaylsis.sql) → SQL queries for data analysis  
 - `sample_data.csv` → Optional sample data in CSV format  
 - `ER_diagram.png` → Optional relationship diagram  
 
+## 📊 SQL Analysis Queries
+
+You can find advanced SQL queries used for analyzing customer behavior, top-selling tracks, and revenue reports here:
+
+👉 [`music_store_anaylsis.sql`](https://github.com/Jawebdata/music-store-management/blob/66f26e18b1fe7d8fb9a3d3cfc2ff8f7515e49fe3/music_store_anaylsis.sql)
+
 ## ⚙️ How to Use
 
-1. Import the `music_store.sql` file into your database  
-2. Run sample queries to test functionality  
+1. Import the [`Music_Store_database.sql`](https://github.com/Jawebdata/music-store-management/blob/66f26e18b1fe7d8fb9a3d3cfc2ff8f7515e49fe3/Music_Store_database.sql) file into your database  
+2. Run queries from the [`music_store_anaylsis.sql`](https://github.com/Jawebdata/music-store-management/blob/66f26e18b1fe7d8fb9a3d3cfc2ff8f7515e49fe3/music_store_anaylsis.sql) file  
 3. Modify and expand the project as per your needs  
 
 ## 👨‍💻 Author
 
 **Javed Hussain**  
-Email: javed.hussain@example.com
+Email: hussainjaved001100@gmail.com
