@@ -1,22 +1,39 @@
--- 1 who is the senior of the employee
+-- all tables
+SELECT * FROM public.album;
+SELECT * FROM public.artist;
+SELECT * FROM public.customer;
+SELECT * FROM public.employee;
+SELECT * FROM public.genre;
+SELECT * FROM public.invoice;
+SELECT * FROM public.invoice_line;
+SELECT * FROM public.media_type;
+SELECT * FROM public.playlist;
+SELECT * FROM public.playlist_track;
+SELECT * FROM public.track;
+
+-- 1 Who is the most senior employee in the company?
 select * from employee 
 order by levels desc
 limit 1;
--- 2 which countries have the most invoices?
+
+-- 2 Which countries have generated the most invoices?
 select * from invoice;
 select billing_country,count(*) as inv from invoice
 group by billing_country
 order by inv desc;
+
  -- 3 what are top 3 values of total invoice?
 select total from invoice
 order by total desc;
- -- 4 which city has best customer. city which have highest sum of invice total . return both the city name and sum of all invoice totals
+
+ -- 4 Which city has the best customers based on total invoice sales?
  select * from customer;
  select * from invoice;
  select billing_city, sum(total) from invoice
  group by billing_city
  order by sum desc;
- -- 5 who is the best customer? who has spent the most money will be declared the best customer. querry that return the person who has spend the most money
+ 
+ -- 5 Who is the best customer by total spending?
 select c.customer_id,c.first_name,c.last_name,sum(inv.total) as total_sum from customer as c
 join invoice as inv
 on c.customer_id=inv.customer_id
@@ -24,13 +41,11 @@ group by c.customer_id
 order by total_sum desc;
 select * from invoice;
 select * from customer;
--- write query to return the email, first name, last name, and genre of all roack music listeners. return your list ordered alphabetically by email starting with A 
 
+-- 6 Which customers listen to Rock music (with their emails & names)?
 select * from genre;
  select * from track;
- 
  select * from customer;
-
 
  -- we need to connect together but how
  -- we customers with invoice
@@ -49,7 +64,7 @@ ON t.genre_id = g.genre_id
 WHERE g.name LIKE '%Rock%'
 ) order by email;
 
---  lets invite the artists who have written the most rock music in our dataset write a query the retunrs the artist name tnad total tact count of the top 20 roack bands;
+-- 7 Who are the top 10 artists with the most Rock tracks?
 
 SELECT artist.artist_id, artist.name, COUNT(artist.artist_id) AS total_track_count
 FROM track AS t
@@ -61,7 +76,8 @@ GROUP BY artist.artist_id, artist.name
 ORDER BY total_track_count DESC
 LIMIT 10;
 
--- retunn all the track names that have a song length lnger than the average song length tetinr the name and milliseconds for each track order by the song length with the longest songs listed first
+
+-- 8 Which songs are longer than the average song length?
 select name,milliseconds from track 
 where milliseconds > (
 select avg(milliseconds) as avg_of_track
@@ -70,7 +86,7 @@ from track
 order by milliseconds desc;
 
 
--- find how much spent by each customer on artists. artist name , customer name, total spent
+-- 9 How much did each customer spend on the top 5 artists?
 
 with best_artist as (
 select artist.artist_id, artist.name as artist_name ,sum(invoice_line.unit_price * invoice_line.quantity) as total_sales from invoice_line
@@ -92,7 +108,8 @@ join best_artist on album.artist_id=best_artist.artist_id
  group by c.customer_id,c.first_name,c.last_name,best_artist.artist_name
  order by amount_spent desc;
 
--- find out the most popular music genre for each country . popular based on highest amount of purchasing
+
+-- 10 What is the most popular music genre in each country based on purchases?
 with Pg as (
 select customer.country,genre.name,genre.genre_id, count(invoice_line.quantity) from invoice_line
 join invoice on invoice_line.invoice_id=invoice.invoice_id
